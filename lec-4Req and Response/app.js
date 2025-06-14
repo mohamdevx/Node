@@ -3,14 +3,27 @@ const http = require('http');
 const server = http.createServer((req, res) => {
     console.log(req.url, req.method, req.headers);
 
-    res.setHeader('Content-Type', 'text/html');  // ← use 'text/html' instead of 'text/plain'
+    if(req.url=='/'){
+         res.setHeader('Content-Type', 'text/html');  // ← use 'text/html' instead of 'text/plain'
 
     res.write('<html>');
     res.write('<head><title>Complete Coding</title></head>'); // ← fixed 'titel' to 'title'
-    res.write('<body><h1>Like / Share / Subscribe</h1></body>');
+    res.write('<body><h1>Welcome to Home</h1></body>');
     res.write('</html>');
 
-    res.end();
+    return res.end(); // ← return to avoid further processing
+    } else if (req.url==='/products'){
+        res.setHeader('Content-Type', 'text/html');  // ← use 'text/html' instead of 'text/plain'
+
+        res.write('<html>');
+        res.write('<head><title>Complete Coding</title></head>'); // ← fixed 'titel' to 'title'
+        res.write('<body><h1>Chekproudtts</h1></body>');
+        res.write('</html>');
+
+        res.end();
+    }
+
+    
 });
 
 server.listen(3000, () => {
